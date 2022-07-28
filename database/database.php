@@ -20,6 +20,29 @@ function db_connect() {
   }
 }
 
+// login
+function handle_login() {
+  global $pdo;
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  }
+}
+
+// register
+function handle_register() {
+  global $pdo;
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['userRegister']) && isset($_POST['emailRegister']) && isset($_POST['passwordRegister'])) {
+      $sql = 'INSERT INTO users (name, email, password) VALUES (:name, :email, :password);';
+      $statement = $pdo->prepare($sql);
+      $statement->bindValue(':name', $_POST['userRegister']);
+      $statement->bindValue(':email', $_POST['emailRegister']);
+      $statement->bindValue(':password', $_POST['passwordRegister']);
+      $statement->execute();
+    }
+  }
+}
+
 
 //
 // below is all copied from my assignment
