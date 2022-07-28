@@ -10,8 +10,8 @@
 
     <link rel="icon" href="/favicon.ico">
 
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
 
