@@ -37,11 +37,11 @@ function handle_register() {
 
 
 // validate registration fields
-function validate_email($email) {
+function validate_email_user($email, $username) {
   if (preg_match('#^(.+)@([^\.].*)\.([a-z]{2,})$#', $email)) {
     global $pdo;
-    foreach ($pdo->query('SELECT email FROM users') as $e) {
-      if ($e['email'] == $email) {
+    foreach ($pdo->query('SELECT email, name FROM users') as $e) {
+      if ($e['email'] == $email || $e['name'] == $username) {
         return FALSE;
       }
     }
