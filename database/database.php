@@ -50,27 +50,54 @@ function validate_email_user($email, $username) {
   return FALSE;
 }
 /*
-// get user id from password and name or email
-function getUserID($user) {
-  // search for email, else search by name
-  if () {
-
-  } else {
-
-  }
-}
-*/
-
-/*
+// why is this fucked up?
 // login with existing user account
 function handle_login() {
   global $pdo;
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['userLogin'] && isset($_POST[]))) {
-
+    if (isset($_POST['userLogin'] && isset($_POST['passwordLogin']))) {
+      $col = NULL;
+      // search for email, else search by name
+      if (preg_match('#^(.+)@([^\.].*)\.([a-z]{2,})$#', $user)) {
+        $col = 'email';
+      } else {
+        $col = 'name';
+      }
+      if ($col != NULL) {
+        // just doing by name first
+        //$query = 'SELECT ' .$col  ', password FROM users;';
+        $query = 'SELECT name, password FROM users;';
+        foreach ($pdo->query($query) as $field) {
+          //if ($field[$col] == $_POST['userLogin'] && $field['password'] == $_POST['passwordLogin']) {
+            //return TRUE;
+          //}
+          if ($field['name'] == $_POST['userLogin'] && $field['password'] == $_POST['passwordLogin']) {
+            return TRUE;
+          }
+        }
+      }
     }
   }
+  return FALSE;
 }
 
+/*
+// get user id from password and name or email
+function getUserID($user) {
+  global $pdo;
+  $col = NULL;
+  $username;
+  $email;
+  $password;
+  $userID;
+  // search for email, else search by name
+  if (preg_match('#^(.+)@([^\.].*)\.([a-z]{2,})$#', $user)) {
+    $col = 'email';
+  } else {
+    $col = 'name';
+  }
+  foreach ($pdo->query('SELECT ' .$col  ' FROM users') as $field) {
 
+  }
+}
 */
