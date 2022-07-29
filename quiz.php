@@ -12,6 +12,12 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
+    <script type="text/javascript">
+        // pass user to local storage
+        localStorage.setItem('user', "<?php echo $user['name'] ?>")
+        localStorage.setItem('email', "<?php echo $user['email'] ?>")
+        console.log(localStorage.getItem('user'), localStorage.getItem('email'));
+    </script>
 </head>
 <body>
     <h1>here is the quiz!</h1>

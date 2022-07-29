@@ -2,14 +2,14 @@
 <?php
     require 'database/database.php';
     $pdo = db_connect();
-    $valid = handle_login();
-    if($valid) {
-        // logged in!
-        echo '<h1>nice you are logged in</h1>';
+    $user = handle_login();
+    if($user) {
+        // logged in
+        include 'quiz.php';
+        // TODO pass on user info
     } else {
         // password or user name did not match
         echo '<span class="alert">username/email or password did not match, please try again.</span>';
-        // say email exists then redirect to index
         include 'index.php';
     }
 ?>
