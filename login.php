@@ -6,7 +6,6 @@
     if($user) {
         // logged in
         include 'quiz.php';
-        // TODO pass on user info
     } else {
         // password or user name did not match
         echo '<span class="alert">username/email or password did not match, please try again.</span>';

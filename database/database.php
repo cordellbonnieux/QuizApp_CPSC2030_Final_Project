@@ -20,6 +20,11 @@ function db_connect() {
   }
 }
 
+// get unsplash api data
+function getUnsplashData() {
+  return array('secret'=>UNSPLASH_SECRET,'access'=>UNSPLASH_ACCESS);
+}
+
 // register a new user account, return name and email
 function handle_register() {
   global $pdo;

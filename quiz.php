@@ -16,7 +16,9 @@
         // pass user to local storage
         localStorage.setItem('user', "<?php echo $user['name'] ?>")
         localStorage.setItem('email', "<?php echo $user['email'] ?>")
-        console.log(localStorage.getItem('user'), localStorage.getItem('email'));
+        // pass unsplash api data to local storage
+        localStorage.setItem('apiSecret', "<?php echo getUnsplashData()['secret'] ?>")
+        localStorage.setItem('apiAccess', "<?php echo getUnsplashData()['access'] ?>")
     </script>
 </head>
 <body>

@@ -5,7 +5,6 @@
     $user;
     if (validate_email_user($_POST['emailRegister'], $_POST['userRegister'])) {
         $user = handle_register();
-        // TODO pass on user info
         include 'quiz.php';
     } else {
         $user = NULL;
