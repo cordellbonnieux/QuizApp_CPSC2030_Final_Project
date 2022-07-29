@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/style.css">
 <?php
     require 'database/database.php';
     $pdo = db_connect();
@@ -9,7 +10,8 @@
         include 'quiz.php';
     } else {
         $user = NULL;
-        echo '<h1>shit email exists already</h1>';
+        echo '<span class="alert">email or username already exists, please try another.</span>';
         // say email exists then redirect to index
+        include 'index.php';
     }
 ?>
