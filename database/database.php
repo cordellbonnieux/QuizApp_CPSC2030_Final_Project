@@ -20,15 +20,7 @@ function db_connect() {
   }
 }
 
-// login
-function handle_login() {
-  global $pdo;
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-  }
-}
-
-// register
+// register a new user account
 function handle_register() {
   global $pdo;
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -44,59 +36,41 @@ function handle_register() {
 }
 
 
-//
-// below is all copied from my assignment
-//
+// validate registration fields
+function validate_email($email) {
+  if (preg_match('#^(.+)@([^\.].*)\.([a-z]{2,})$#', $email)) {
+    global $pdo;
+    foreach ($pdo->query('SELECT email FROM users') as $e) {
+      if ($e['email'] == $email) {
+        return FALSE;
+      }
+    }
+    return TRUE;
+  }
+  return FALSE;
+}
+/*
+// get user id from password and name or email
+function getUserID($user) {
+  // search for email, else search by name
+  if () {
 
+  } else {
 
-// Handle form submission
-function handle_form_submission() {
+  }
+}
+*/
+
+/*
+// login with existing user account
+function handle_login() {
   global $pdo;
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['userLogin'] && isset($_POST[]))) {
 
-  if($_SERVER["REQUEST_METHOD"] == "POST")
-  {
-    // TODO
-    if(isset($_POST['email']) && isset($_POST['mood']) && isset($_POST['comment'])) {
-      $sql = 'INSERT INTO comments (email, mood, date, commentText) VALUES (:email, :mood, :date, :commentText);';
-      $statement = $pdo->prepare($sql);
-
-      $statement->bindValue(':email', $_POST['email']);
-      $statement->bindValue(':mood', $_POST['mood']);
-      $statement->bindValue(':date', date('Y/m/d'));
-      $statement->bindValue(':commentText', $_POST['comment']);
-      
-      $statement->execute();
     }
   }
 }
 
-// Get all comments from database and store in $comments
-function get_comments() {
-  global $pdo;
-  global $comments;
 
-  //TODO
-  $sql = 'SELECT ID, date, mood, email, commentText FROM comments ORDER BY ID DESC;';
-  $result = $pdo->query($sql);
-
-  while($row = $result->fetch()) {
-    $comments[] = $row;
-  }
-}
-
-// Get unique email addresses and store in $commenters
-function get_commenters() {
-  global $pdo;
-  global $commenters;
-
-  //TODO
-  $sql = 'SELECT DISTINCT email FROM comments;';
-  $result = $pdo->query($sql);
-  //
-  $commenters = [];
-
-  while($email = $result->fetch()) {
-    //$commenters = $email;
-    array_push($commenters, $email);
-  }
-}
+*/

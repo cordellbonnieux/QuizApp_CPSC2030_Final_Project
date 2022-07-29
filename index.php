@@ -1,7 +1,3 @@
-<?php
-    require_once 'register.php';
-    require_once 'login.php';
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,7 +19,7 @@
         <button id="toggleLogin">create account</button>
         <div id="login">
             <h2>Login</h1>
-            <form action="login.php" method="post">
+            <form action="login.php" method="POST">
                 <label for="userLogin">
                     username or email:
                     <input type="text" id="userLogin" name="userLogin"></input>
@@ -37,7 +33,7 @@
         </div>
         <div id="register">
             <h2>Create an account</h2>
-            <form action="register.php" method="post">
+            <form action="register.php" method="POST">
                 <label for="userRegister">
                     username:
                     <input type="text" id="userRegister" name="userRegister"></input>
