@@ -11,7 +11,7 @@
     <link rel="icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
+    <script src="js/quiz.js" defer></script>
     <script type="text/javascript">
         // pass user to local storage
         localStorage.setItem('user', "<?php echo $user['name'] ?>")
@@ -20,6 +20,11 @@
     </script>
 </head>
 <body>
-    <h1>here is the quiz!</h1>
+    <h1>Quiz App</h1>
+    <div class="wrapper">
+        <div id="quiz">
+            <!-- Quiz Area --->
+        </div>
+    </div>
 </body>
 </html>

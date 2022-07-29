@@ -20,7 +20,7 @@ function db_connect() {
   }
 }
 
-// register a new user account
+// register a new user account, return name and email
 function handle_register() {
   global $pdo;
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -52,6 +52,7 @@ function validate_email_user($email, $username) {
   return FALSE;
 }
 
+// login to account, return name and email
 function handle_login() {
   global $pdo;
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -77,24 +78,3 @@ function handle_login() {
   }
   return NULL;
 }
-
-/*
-// get user id from password and name or email
-function getUserID($user) {
-  global $pdo;
-  $col = NULL;
-  $username;
-  $email;
-  $password;
-  $userID;
-  // search for email, else search by name
-  if (preg_match('#^(.+)@([^\.].*)\.([a-z]{2,})$#', $user)) {
-    $col = 'email';
-  } else {
-    $col = 'name';
-  }
-  foreach ($pdo->query('SELECT ' .$col  ' FROM users') as $field) {
-
-  }
-}
-*/
