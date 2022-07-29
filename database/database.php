@@ -49,30 +49,27 @@ function validate_email_user($email, $username) {
   }
   return FALSE;
 }
-/*
-// why is this fucked up?
-// login with existing user account
+
 function handle_login() {
   global $pdo;
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['userLogin'] && isset($_POST['passwordLogin']))) {
-      $col = NULL;
-      // search for email, else search by name
-      if (preg_match('#^(.+)@([^\.].*)\.([a-z]{2,})$#', $user)) {
-        $col = 'email';
-      } else {
-        $col = 'name';
-      }
-      if ($col != NULL) {
-        // just doing by name first
-        //$query = 'SELECT ' .$col  ', password FROM users;';
-        $query = 'SELECT name, password FROM users;';
-        foreach ($pdo->query($query) as $field) {
-          //if ($field[$col] == $_POST['userLogin'] && $field['password'] == $_POST['passwordLogin']) {
-            //return TRUE;
-          //}
-          if ($field['name'] == $_POST['userLogin'] && $field['password'] == $_POST['passwordLogin']) {
-            return TRUE;
+    if (isset($_POST['userLogin']) && isset($_POST['passwordLogin'])) {
+      if (!empty($_POST['userLogin']) && !empty($_POST['passwordLogin'])) {
+        $col = NULL;
+        $query;
+        if (preg_match('#^(.+)@([^\.].*)\.([a-z]{2,})$#', $_POST['userLogin'])) {
+          $col = 'email';
+          $query = 'SELECT email, password FROM users';
+        } else {
+          $col = 'name';
+          $query = 'SELECT name, password FROM users';
+        }
+        if ($col != NULL) {
+          //$query = 'SELECT ' .$col  ', password FROM users;';
+          foreach ($pdo->query($query) as $field) {
+            if ($field[$col] == $_POST['userLogin'] && $field['password'] == $_POST['passwordLogin']) {
+              return TRUE;
+            }
           }
         }
       }

@@ -2,7 +2,8 @@
 <?php
     require 'database/database.php';
     $pdo = db_connect();
-    if(TRUE) {
+    $valid = handle_login();
+    if($valid) {
         // logged in!
         echo '<h1>nice you are logged in</h1>';
     } else {
