@@ -50,7 +50,6 @@ let fetchImages = () => {
                     return res.results
                 })
                 .then(images => {
-                    console.log(images.length, questions[i])
                     if (images.length > 0) {
                         return images[0].urls.regular
                     } else {
@@ -71,18 +70,15 @@ let fetchImages = () => {
 }
 
 /*
-* Fetch Questions, THEN fetch images (if possible)
+* Fetch Questions, THEN fetch images (if available)
 */
-fetchQuestions().then(res => {
-    console.log(res, 'Questions Ready')
-})
-.then(() => {
+fetchQuestions().then(() => {
     // fetch the images
     fetchImages().then(res => {
         /*
         *   The line below starts the game
         */
-        gameLoop()
+        gameLoop(0)
     }).catch(err => {
         console.log(err)
     })
@@ -98,10 +94,18 @@ function gameLoop(n) {
     if (answers.length < questions.length) {
         renderUI(questions[n])
     } else {
-        // pass results to localstorage
-        // get in php
-        // post to DB
-        // load leaderboard
+        // clear container
+        container.innerHTML = ''
+        // tally score
+        let score = tallyScore()
+        // pass over data to results page
+        let data = new FormData()
+        data.append('score', score)
+        data.append('date', new Date() + '')
+        fetch('results.php', {method: 'POST', body: data, action:'results.php'})
+        .then(res => console.log(res))
+        //.then(txt => console.log(txt)) // <----- window.location.href = 'results.php'
+        .catch(err => console.log(err))
     }
 }
 
@@ -136,27 +140,53 @@ function renderUI(question) {
     text.textContent = question.question
     wrap.appendChild(text)
     // make answer buttons
-    let btnWrapper = make('div', 'quizBtnWrap')
+    let btnWrapper = make('form', 'quizBtnWrap')
     let a = [...question.incorrectAnswers, question.correctAnswer]
     a = shuffle(a)
     //question.incorrectAnswers.length+1
     for (let i = 0; i < a.length; i++) {
         let button = make('button', 'quizBtn', `quizBtn${i}`)
         button.innerHTML = a[i]
-        button.addEventListener('click', chooseAnswer(a[i]))
+        button.type = 'submit'
+        button.addEventListener('click', e => {
+            e.preventDefault()
+            chooseAnswer(a[i])
+        })
         btnWrapper.appendChild(button)
     }
+    // prevent submission all questions but the last
+    if (answers.length+1 >= questions.length) {
+        // submit form
+    } else {
+        // do not submit
+        btnWrapper.onSubmit = e => e.preventDefault()
+        btnWrapper.action = "javascript:void(0);"
+    }
+    // add btns to wrap
     wrap.appendChild(btnWrapper)
     // add everything
     container.appendChild(wrap)
 }
 
 /*
-*
+* Store answer in array, then continue loop
 */
 function chooseAnswer(choice) {
     answers.push(choice)
     gameLoop(answers.length)
+}
+
+/*
+* tallies up and returns the score
+*/
+function tallyScore() {
+    let score = 0
+    for (let i = 0; i < questions.length; i++) {
+        if (questions[i].correctAnswer === answers[i]) {
+            score++
+        }
+    }
+    return score
 }
 
 /*
