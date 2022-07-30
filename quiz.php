@@ -15,10 +15,8 @@
     <script src="js/quiz.js" defer></script>
     <script type="text/javascript">
         // pass user to local storage
-        if ($user) {
-            localStorage.setItem('user', "<?php echo $user['name'] ?>")
-            localStorage.setItem('email', "<?php echo $user['email'] ?>")
-        }
+        localStorage.setItem('name', "<?php echo $user['name'] ?>")
+        localStorage.setItem('email', "<?php echo $user['email'] ?>")
         // pass unsplash api data to local storage
         localStorage.setItem('apiSecret', "<?php echo getUnsplashData()['secret'] ?>")
         localStorage.setItem('apiAccess', "<?php echo getUnsplashData()['access'] ?>")

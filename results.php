@@ -1,5 +1,7 @@
 <?php
     require 'database/database.php';
+    $pdo = db_connect();
     $didSubmit = submit_score();
-    include 'templates/results_page.php';
+    echo $_POST['user'] .':  ' .$_POST['score'];
+    include 'templates/results_page.php'; 
 ?>

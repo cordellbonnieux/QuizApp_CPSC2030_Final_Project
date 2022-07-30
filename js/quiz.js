@@ -14,9 +14,6 @@ let api = {
     url: 'https://api.unsplash.com/search/photos?page=1&per_page=20&client_id=' + localStorage.getItem('apiAccess')
 }
 
-// to test
-console.log(user)
-
 /*
 * Async Functions
 * Used to fetch rest api information

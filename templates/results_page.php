@@ -11,6 +11,10 @@
     <link rel="icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/results.js" defer></script>
+    <script type="text/javascript">
+        // maybe pass to local storage?
+    </script>
 </head>
 <body>
     <h1>Quiz App</h1>
@@ -18,10 +22,8 @@
         <div id="results">
             <?php
                 var_dump($GLOBALS);
-                // i cant seem to get the user name to show up in $_POST
-                // trace the globals from start to finish
                 if ($didSubmit) {
-                    echo '<h4>It did submit' .$_POST['user'] .', ' .$_POST['score'] .'</h4>';
+                    echo '<h4>It did submit: ' .$_POST['user'] .', ' .$_POST['score'] .'</h4>';
                 } else {
                     echo '<h4>it did not submit</h4>';
                 }

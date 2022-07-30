@@ -42,7 +42,6 @@ function handle_register() {
   }
 }
 
-
 // validate registration fields
 function validate_email_user($email, $username) {
   if (preg_match('#^(.+)@([^\.].*)\.([a-z]{2,})$#', $email)) {
@@ -83,29 +82,17 @@ function handle_login() {
   }
   return NULL;
 }
-/*
+
 // submit score
-function submit_score() {
-  global $pdo;
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['score'])) {
-      $sql = 'INSERT INTO scores (user, score) VALUES (:user, :score);';
-      $statement = $pdo->prepare($sql);
-      $statement->bindValue(':user', $_POST['user']);
-      $statement->bindValue(':score', $_POST['score']);
-      $statement->execute();
-      return TRUE;
-    }
-  }
-  return FALSE;
-}
-*/
-// re write the above
 function submit_score() {
   global $pdo;
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['user']) && isset($_POST['score'])) {
-      // so far working
+      $sql = 'INSERT INTO scores (score, user) VALUES (:score, :user)';
+      $statement = $pdo->prepare($sql);
+      $statement->bindValue(':score', $_POST['score']);
+      $statement->bindValue(':user', $_POST['user']);
+      $statement->execute();
       return TRUE;
     }
   }
