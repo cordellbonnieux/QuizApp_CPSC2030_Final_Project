@@ -1,8 +1,3 @@
-<?php
-if (isset($_POST['score'])) {
-    echo '<h4>horay magic</h4>';
-}
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +17,13 @@ if (isset($_POST['score'])) {
     <div class="wrapper">
         <div id="results">
             oioioi
-            <!-- generate results from match --->
+            <?php
+                if (isset($_POST['score'])) {
+                    echo '<h4>I recieved this score: ' .$_POST['score'] .'</h4>';
+                } else {
+                    echo '<h4> shit okay</h4>';
+                }
+            ?>
         </div>
     </div>
 </body>

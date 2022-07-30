@@ -87,31 +87,19 @@ fetchQuestions().then(() => {
     console.log(err)
 })
 
-/*
-* Main Game Loop
-*/
-function gameLoop(n) {
-    if (answers.length < questions.length) {
-        renderUI(questions[n])
-    } else {
-        // clear container
-        container.innerHTML = ''
-        // tally score
-        let score = tallyScore()
-        // pass over data to results page
-        let data = new FormData()
-        data.append('score', score)
-        data.append('date', new Date() + '')
-        fetch('results.php', {method: 'POST', body: data, action:'results.php'})
-        .then(res => console.log(res))
-        //.then(txt => console.log(txt)) // <----- window.location.href = 'results.php'
-        .catch(err => console.log(err))
-    }
-}
 
 /*
 * Functions
 */
+
+/*
+* Game Loop
+*/
+function gameLoop(n) {
+    if (answers.length < questions.length) {
+        renderUI(questions[n])
+    }
+}
 
 /*
 * Make UI for given Question
@@ -149,7 +137,9 @@ function renderUI(question) {
         button.innerHTML = a[i]
         button.type = 'submit'
         button.addEventListener('click', e => {
-            e.preventDefault()
+            if (answers.length+1 < questions.length) {
+                e.preventDefault()
+            }
             chooseAnswer(a[i])
         })
         btnWrapper.appendChild(button)
@@ -157,6 +147,16 @@ function renderUI(question) {
     // prevent submission all questions but the last
     if (answers.length+1 >= questions.length) {
         // submit form
+        btnWrapper.method = 'POST'
+        btnWrapper.action = 'results.php'
+        btnWrapper.onSubmit = () => {
+            let field = make('input')
+            field.type = 'hidden'
+            field.name = 'score'
+            field.value = tallyScore()
+            btnWrapper.appendChild(field)
+            return true
+        }
     } else {
         // do not submit
         btnWrapper.onSubmit = e => e.preventDefault()
@@ -205,8 +205,7 @@ function make(ele, className = null, id = null) {
 
 /*
 * Shuffle an Array
-* Algorithm borrowed from Geeksforgeeks:
-* https://www.geeksforgeeks.org/how-to-shuffle-an-array-using-javascript/
+* idea credit: https://www.geeksforgeeks.org/how-to-shuffle-an-array-using-javascript/
 */
 function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
