@@ -1,3 +1,4 @@
+<?php //$_POST = array(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,8 +15,10 @@
     <script src="js/quiz.js" defer></script>
     <script type="text/javascript">
         // pass user to local storage
-        localStorage.setItem('user', "<?php echo $user['name'] ?>")
-        localStorage.setItem('email', "<?php echo $user['email'] ?>")
+        if ($user) {
+            localStorage.setItem('user', "<?php echo $user['name'] ?>")
+            localStorage.setItem('email', "<?php echo $user['email'] ?>")
+        }
         // pass unsplash api data to local storage
         localStorage.setItem('apiSecret', "<?php echo getUnsplashData()['secret'] ?>")
         localStorage.setItem('apiAccess', "<?php echo getUnsplashData()['access'] ?>")
@@ -25,6 +28,7 @@
     <h1>Quiz App</h1>
     <div class="wrapper">
         <div id="quiz">
+            page is loading...
             <!-- Quiz Area injected via JS --->
         </div>
     </div>

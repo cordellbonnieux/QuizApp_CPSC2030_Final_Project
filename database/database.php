@@ -83,3 +83,31 @@ function handle_login() {
   }
   return NULL;
 }
+/*
+// submit score
+function submit_score() {
+  global $pdo;
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['score'])) {
+      $sql = 'INSERT INTO scores (user, score) VALUES (:user, :score);';
+      $statement = $pdo->prepare($sql);
+      $statement->bindValue(':user', $_POST['user']);
+      $statement->bindValue(':score', $_POST['score']);
+      $statement->execute();
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+*/
+// re write the above
+function submit_score() {
+  global $pdo;
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['user']) && isset($_POST['score'])) {
+      // so far working
+      return TRUE;
+    }
+  }
+  return FALSE;
+}

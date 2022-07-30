@@ -11,7 +11,7 @@
     <link rel="icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
+    <script src="js/validation.js" defer></script>
 </head>
 <body>
     <h1>Quiz App</h1>

@@ -14,6 +14,9 @@ let api = {
     url: 'https://api.unsplash.com/search/photos?page=1&per_page=20&client_id=' + localStorage.getItem('apiAccess')
 }
 
+// to test
+console.log(user)
+
 /*
 * Async Functions
 * Used to fetch rest api information
@@ -127,17 +130,34 @@ function renderUI(question) {
     let text = make('h2')
     text.textContent = question.question
     wrap.appendChild(text)
-    // make answer buttons
+    // make answer form/buttons
+    let form = makeForm(question)
+    wrap.appendChild(form)
+    // add everything
+    container.appendChild(wrap)
+}
+
+/*
+* Make the form
+* behavior of form changes to default (page refresh) on final question
+* in order to allow posting to global $_POST variable
+*/
+function makeForm(question) {
     let btnWrapper = make('form', 'quizBtnWrap')
     // prevent submission all questions but the last
     if (answers.length+1 >= questions.length) {
         // submit form
         btnWrapper.method = 'POST'
         btnWrapper.action = 'results.php'
-        let field = make('input', null, 'scoreField')
-        field.type = 'hidden'
-        field.name = 'score'
-        btnWrapper.appendChild(field)
+        let scoreField = make('input', null, 'score')
+        scoreField.type = 'hidden'
+        scoreField.name = 'score'
+        let userField = make('input', null, 'user')
+        userField.type = 'hidden'
+        userField.name = 'user'
+        userField.value = user.name
+        btnWrapper.appendChild(scoreField)
+        btnWrapper.appendChild(userField)
     } else {
         // do not submit
         btnWrapper.onSubmit = e => e.preventDefault()
@@ -145,7 +165,6 @@ function renderUI(question) {
     }
     let a = [...question.incorrectAnswers, question.correctAnswer]
     a = shuffle(a)
-    //question.incorrectAnswers.length+1
     for (let i = 0; i < a.length; i++) {
         let button = make('button', 'quizBtn', `quizBtn${i}`)
         button.innerHTML = a[i]
@@ -156,15 +175,12 @@ function renderUI(question) {
             }
             chooseAnswer(a[i])
             if (answers.length+1 >= questions.length) {
-                document.getElementById('scoreField').value = tallyScore()
+                document.getElementById('score').value = tallyScore()
             }
         })
         btnWrapper.appendChild(button)
     }
-    // add btns to wrap
-    wrap.appendChild(btnWrapper)
-    // add everything
-    container.appendChild(wrap)
+    return btnWrapper
 }
 
 /*
