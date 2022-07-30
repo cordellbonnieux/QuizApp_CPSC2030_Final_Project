@@ -129,6 +129,20 @@ function renderUI(question) {
     wrap.appendChild(text)
     // make answer buttons
     let btnWrapper = make('form', 'quizBtnWrap')
+    // prevent submission all questions but the last
+    if (answers.length+1 >= questions.length) {
+        // submit form
+        btnWrapper.method = 'POST'
+        btnWrapper.action = 'results.php'
+        let field = make('input', null, 'scoreField')
+        field.type = 'hidden'
+        field.name = 'score'
+        btnWrapper.appendChild(field)
+    } else {
+        // do not submit
+        btnWrapper.onSubmit = e => e.preventDefault()
+        btnWrapper.action = "javascript:void(0);"
+    }
     let a = [...question.incorrectAnswers, question.correctAnswer]
     a = shuffle(a)
     //question.incorrectAnswers.length+1
@@ -141,26 +155,11 @@ function renderUI(question) {
                 e.preventDefault()
             }
             chooseAnswer(a[i])
+            if (answers.length+1 >= questions.length) {
+                document.getElementById('scoreField').value = tallyScore()
+            }
         })
         btnWrapper.appendChild(button)
-    }
-    // prevent submission all questions but the last
-    if (answers.length+1 >= questions.length) {
-        // submit form
-        btnWrapper.method = 'POST'
-        btnWrapper.action = 'results.php'
-        btnWrapper.onSubmit = () => {
-            let field = make('input')
-            field.type = 'hidden'
-            field.name = 'score'
-            field.value = tallyScore()
-            btnWrapper.appendChild(field)
-            return true
-        }
-    } else {
-        // do not submit
-        btnWrapper.onSubmit = e => e.preventDefault()
-        btnWrapper.action = "javascript:void(0);"
     }
     // add btns to wrap
     wrap.appendChild(btnWrapper)
