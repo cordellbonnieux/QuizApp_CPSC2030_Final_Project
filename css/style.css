@@ -24,3 +24,7 @@ h1 {
     margin: auto;
     max-width: 600px;
 }
+
+.quizImg {
+    max-width: 100%;
+}

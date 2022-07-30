@@ -25,7 +25,7 @@
     <h1>Quiz App</h1>
     <div class="wrapper">
         <div id="quiz">
-            <!-- Quiz Area --->
+            <!-- Quiz Area injected via JS --->
         </div>
     </div>
 </body>

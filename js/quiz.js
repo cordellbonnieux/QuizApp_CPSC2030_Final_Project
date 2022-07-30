@@ -50,6 +50,7 @@ let fetchImages = () => {
                     return res.results
                 })
                 .then(images => {
+                    console.log(images.length, questions[i])
                     if (images.length > 0) {
                         return images[0].urls.regular
                     } else {
@@ -93,10 +94,15 @@ fetchQuestions().then(res => {
 /*
 * Main Game Loop
 */
-function gameLoop() {
-    //console.log(questions)
-    renderUI(questions[0])
-
+function gameLoop(n) {
+    if (answers.length < questions.length) {
+        renderUI(questions[n])
+    } else {
+        // pass results to localstorage
+        // get in php
+        // post to DB
+        // load leaderboard
+    }
 }
 
 /*
@@ -111,6 +117,10 @@ function renderUI(question) {
     container.innerHTML = ''
     // add wrapper
     let wrap = make('div','quizWrap')
+    // add breadcrumb
+    let number = make('h3','quizNumber')
+    number.textContent = `question #${answers.length+1}`
+    wrap.appendChild(number)
     // add image (if applicable)
     let img
     if (question.img != null) {
@@ -127,9 +137,13 @@ function renderUI(question) {
     wrap.appendChild(text)
     // make answer buttons
     let btnWrapper = make('div', 'quizBtnWrap')
-    for (let i = 0; i < question.incorrectAnswers+1; i++) {
+    let a = [...question.incorrectAnswers, question.correctAnswer]
+    a = shuffle(a)
+    //question.incorrectAnswers.length+1
+    for (let i = 0; i < a.length; i++) {
         let button = make('button', 'quizBtn', `quizBtn${i}`)
-        button.innerHTML = 'button'
+        button.innerHTML = a[i]
+        button.addEventListener('click', chooseAnswer(a[i]))
         btnWrapper.appendChild(button)
     }
     wrap.appendChild(btnWrapper)
@@ -138,11 +152,38 @@ function renderUI(question) {
 }
 
 /*
+*
+*/
+function chooseAnswer(choice) {
+    answers.push(choice)
+    gameLoop(answers.length)
+}
+
+/*
 * HTML element factory function
 */
 function make(ele, className = null, id = null) {
     let html = document.createElement(ele)
-    html.className = className != null ? className : ''
-    html.id = id != null ? id : ''
+    if (className != null) {
+        html.className = className
+    }
+    if (id != null) {
+        html.id = id
+    }
     return html
 }
+
+/*
+* Shuffle an Array
+* Algorithm borrowed from Geeksforgeeks:
+* https://www.geeksforgeeks.org/how-to-shuffle-an-array-using-javascript/
+*/
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        let r = Math.floor(Math.random() * (i + 1));   
+        let temp = arr[i];
+        arr[i] = arr[r];
+        arr[r] = temp;
+    } 
+    return arr;
+ }
