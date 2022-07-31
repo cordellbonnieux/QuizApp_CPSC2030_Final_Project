@@ -22,9 +22,14 @@ statsContainer.appendChild(scoreUI(leaderboard.totalGames, 'total games you\'ve 
 container.appendChild(statsContainer)
 
 // create play again button
-let play = document.createElement('a')
-play.href = 'quiz.php'
-play.textContent = 'play again?'
-statsContainer.appendChild(play)
+let form = document.createElement('form')
+form.action = 'quiz.php'
+form.method = 'POST'
+let play = document.createElement('input')
+play.type = 'submit'
+play.innerHTML = 'play again?'
+play.name = 'valid'
+form.appendChild(play)
+statsContainer.appendChild(form)
 
 

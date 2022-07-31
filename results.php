@@ -1,6 +1,5 @@
 <?php
     require 'database/database.php';
-
     $pdo = db_connect();
     $currentScore = submit_score();
     $scores = get_scores();

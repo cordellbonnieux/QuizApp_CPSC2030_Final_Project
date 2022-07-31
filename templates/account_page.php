@@ -24,7 +24,12 @@
     <div class="wrapper">
         <div id="account">
         <span class="loading">page is loading...</span>
-            <!-- account and link to play quiz.php injected via JS --->
+        <!-- account and link to play quiz.php injected via JS --->
+        inject some js here foo
+        <!--- maybe move this to js later--->
+        <form action="quiz.php" method="POST">
+            <button type="submit" name="valid">play game</button>
+        </form>
         </div>
     </div>
 </body>
