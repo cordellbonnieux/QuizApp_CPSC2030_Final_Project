@@ -16,9 +16,16 @@
 <body>
     <h1>Quiz App</h1>
     <div class="wrapper">
+        <h2>Test your knowledge on pop culture, history, geography and more!</h2>
+        <p>
+            Quiz App is a simple game, which pulls in random questions from the web to test your know-how in rounds of 10.
+            Register an account to track your score and see how you compare with others.
+        </p>
+    </div>
+    <div class="wrapper loginContainer">
         <button id="toggle">register a new account</button>
         <div id="login">
-            <h2>Login</h1>
+            <h2>Login</h2>
             <form action="account.php" method="POST" id="loginForm">
                 <label for="userLogin">
                     username or email:
@@ -28,7 +35,7 @@
                     password:
                     <input type="password" id="passwordLogin" name="passwordLogin"></input>
                 </label>
-                <button type="submit" name="submitLogin">login</button>
+                <button type="submit" name="submitLogin" id="submitLogin">login</button>
             </form>
         </div>
         <div id="register">
@@ -50,7 +57,7 @@
                     password, again:
                     <input type="password" id="passwordRegister2" name="passwordRegister2"></input>
                 </label>
-                <button type="submit" name="submitRegister">register</button>
+                <button type="submit" name="submitRegister" id="submitRegister">register</button>
             </form>
         </div>
     </div>

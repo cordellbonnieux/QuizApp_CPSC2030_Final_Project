@@ -9,7 +9,7 @@ if (banner != null && banner.length > 0) {
 }
 
 // DOM elements
-let wrapper = document.querySelector('.wrapper')
+let wrapper = document.querySelector('.loginContainer')
 
 let containers = [
     document.getElementById('login'),
@@ -30,22 +30,35 @@ let inputs = [
     document.getElementById('passwordRegister2')
 ]
 
+let valid = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+]
+
+let submits = [
+    document.getElementById('submitLogin'),
+    document.getElementById('submitRegister')
+]
+
 let toggle = document.getElementById('toggle')
 let toggled = false
 
 // Events
 
 //login form
-forms[0].addEventListener('submit', () => {
+forms[0].addEventListener('submit', e => {
     inputs[0].value = inputs[0].value.trim()
     inputs[1].value = inputs[1].value.trim()
-    // make sure they aren't empty, or above a certain num of chars
     if (inputs[0].value.length < 3) {
         e.preventDefault()
         localStorage.setItem('banner', 'Username is too short.')
         window.location.href = 'index.php'
     }
-    if (inputs[0].value.length < 6) {
+    if (inputs[1].value.length < 6) {
         e.preventDefault()
         localStorage.setItem('banner', 'Password is too short.')
         window.location.href = 'index.php'
@@ -96,13 +109,37 @@ for (let i = 0; i < 2; i++) {
                 t.style = `background: red; color: #fff;`
                 insertAfter(usr[i], t)
             }
+            valid[`${i*2}`] = false
         } else {
             if (document.getElementById(`inputs${i*2}`)) {
                 document.getElementById(`inputs${i*2}`).remove()
             }
+            valid[`${i*2}`] = true
         }
+        checkValidity()
     })
 }
+
+// password too short - login
+inputs[1].addEventListener('blur', () => {
+    if (inputs[1].value.trim().length < 6) {
+        if (!document.getElementById('inputs1')) {
+            let t = document.createElement('span')
+            t.id = 'inputs1'
+            t.className = 'invalidTag'
+            t.textContent = 'password too short (6 chars min)'
+            t.style = `background: red; color: #fff;`
+            insertAfter(inputs[1], t)
+        }
+        valid[1] = false
+    } else {
+        if (document.getElementById('inputs1')) {
+            document.getElementById('inputs1').remove()
+        }
+        valid[1] = true
+    }
+    checkValidity()
+})
 
 // invalid email - register
 inputs[3].addEventListener('blur', () => {
@@ -115,29 +152,37 @@ inputs[3].addEventListener('blur', () => {
             t.style = `background: red; color: #fff;`
             insertAfter(inputs[3], t)
         }
+        valid[3] = false
     } else {
         if (document.getElementById('inputs3')) {
             document.getElementById('inputs3').remove()
         }
+        valid[3] = true
     }
+    checkValidity()
 })
 
 // passwords did not match - register
 inputs[5].addEventListener('blur', () => {
-    if (inputs[4].value != inputs[5].value) {
+    if (inputs[4].value != inputs[5].value || inputs[4].value.trim().length < 6) {
         if (!document.getElementById('inputs4')) {
             let t = document.createElement('span')
             t.id = 'inputs4'
             t.className = 'invalidTag'
-            t.textContent = 'passwords must match'
+            t.textContent = inputs[4].value.trim().length < 6 ? 'password too short (6 chars min)' : 'passwords must match'
             t.style = `background: red; color: #fff;`
             insertAfter(inputs[4], t)
         }
+        valid[4] = true
+        valid[5] = false
     } else {
         if (document.getElementById('inputs4')) {
             document.getElementById('inputs4').remove()
         }
+        valid[4] = true 
+        valid[5] = true
     }
+    checkValidity()
 })
 
 // toggle between login and register
@@ -166,7 +211,9 @@ if (localStorage.getItem('currentForm') == 'register') {
 }
 localStorage.removeItem('currentForm')
 
-
+// ensure buttons are disabled on page load
+submits[0].disabled = true 
+submits[1].disabled = true
 
 function isEmail(email) {
     return email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
@@ -175,4 +222,17 @@ function isEmail(email) {
 // credit: https://www.w3docs.com/snippets/javascript/how-to-insert-an-element-after-another-element-in-javascript.html
 function insertAfter(referenceNode, newNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-  }
+}
+
+function checkValidity() {
+    if (valid[0] && valid[1]) {
+        submits[0].disabled = false
+    } else {
+        submits[0].disabled = true
+    }
+    if (valid[2] && valid[3] && valid[4] && valid[5]) {
+        submits[1].disabled = false
+    } else {
+        submits[1].disabled = true
+    }
+}

@@ -18,8 +18,8 @@
         <div id="delete">
             <div>
                 <h2>Are you sure you want to delete your account?</h2>
+                <b>user: <?php echo $_POST['name'] ?></b>
                 <p>Once deleted, you cannot recover your account or match history.<p>
-                    <?php echo $_POST['name'] .$_POST['email'] .$_POST['password'];?>
                 <div>
                     <form action="delete_confirmed.php" method="POST">
                         <input type="hidden" name="user" value="<?php echo $_POST['name']?>"></input>

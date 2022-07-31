@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript">
-        localStorage.setItem('banner', '<?php echo $banner; ?>')
+        localStorage.setItem('banner', "<?php echo $banner; ?>")
         window.location.href = 'index.php'
     </script>
 </head>
