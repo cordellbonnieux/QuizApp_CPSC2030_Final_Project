@@ -15,6 +15,11 @@ let api = {
 }
 
 /*
+* add the back button
+*/
+document.body.appendChild(backBtn())
+
+/*
 * Async Functions
 * Used to fetch rest api information
 */
@@ -228,3 +233,15 @@ function shuffle(arr) {
     } 
     return arr;
  }
+
+ /*
+ *  Adds a 'back to dashboard' button during play
+ */
+ function backBtn() {
+    // back to dashboard
+    let dash = document.createElement('button')
+    dash.textContent = 'return to dashboard'
+    dash.id = 'backBtn'
+    dash.addEventListener('click', () => window.location.href = 'index.php')
+    return dash
+}
