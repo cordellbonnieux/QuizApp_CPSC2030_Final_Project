@@ -2,7 +2,7 @@ function scoreUI(score, description, total=null) {
     let wrap = document.createElement('div')
     wrap.className = 'scoreWrap'
     let p = document.createElement('p')
-    if (total != null) {
+    if (total != null && !isNaN(score)) {
         p.textContent = `${score}/${total}`
     } else {
         p.textContent = score
@@ -25,7 +25,7 @@ function calcAvg(user, scores) {
             total += scores[i].score
         }
     }
-    let avg = total / games
+    let avg = games > 0 ? total / games : 0
     return Math.round(avg * 10) / 10
 }
 
@@ -50,15 +50,15 @@ function getRank(user, scores) {
         }
     }
     scoreList.sort((a, b) => b.score - a.score)
-    let rank
+    let rank = null
     for (let i = 0; i < scoreList.length; i++) {
         if (scoreList[i].user == user) {
             rank = i + 1
         }
     }
     return {
-        rank: rank,
-        outOf: userList.length,
-        totalGames: scoreList[rank-1].games
+        rank: rank != null ? rank : 'no rank yet',
+        outOf: rank != null ? userList.length : '',
+        totalGames: rank != null ? scoreList[rank-1].games : 0
     }
 }
