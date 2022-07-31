@@ -4,15 +4,14 @@ require 'database/database.php';
 $pdo = db_connect();
 $banner = '';
 $user;
-//$loadPage = FALSE;
 // coming from index login or register
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['submitRegister'])) {
         // this is a registration
         if (validate_email_user($_POST['emailRegister'], $_POST['userRegister'])) {
+            // registration sucessful
             $user = handle_register();
             $scores = get_scores();
-            $loadPage = TRUE;
             include 'templates/account_page.php';
         } else {
             $user = NULL;
@@ -25,16 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if($user) {
             // logged in
             $scores = get_scores();
-            $loadPage = TRUE;
             include 'templates/account_page.php';
         } else {
-            // password or user name did not match
             $banner = 'Username/email or password did not match, please try again.';
             include 'redirect.php';
         }
     }
-} else {
 // coming from link or stored login
+} else {
     include 'index.php';
-    // index will redirect back here using a POST to validate login
 }

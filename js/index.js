@@ -28,6 +28,5 @@ if (localStorage.getItem('name') && localStorage.getItem('password')) {
 
     form.submit()
 } else {
-    // if not, redirect to the login page
     window.location.href = 'login.php'
 }
