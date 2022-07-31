@@ -109,3 +109,12 @@ function get_scores() {
   }
   return $arr;
 }
+
+// this needs to be tested still...
+// delete scores by user
+function delete_scores($user) {
+  global $pdo;
+	$del = $pdo->prepare("DELETE FROM scores WHERE user=:u");
+	$del->bindParam(':u', $user);
+	$del->execute();
+}
