@@ -21,6 +21,10 @@ statsContainer.appendChild(scoreUI(leaderboard.totalGames, 'total games you\'ve 
 // append all secondary stats
 container.appendChild(statsContainer)
 
-console.log(scores)
+// create play again button
+let play = document.createElement('a')
+play.href = 'index.php'
+play.textContent = 'play again?'
+statsContainer.appendChild(play)
 
 

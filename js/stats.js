@@ -25,7 +25,8 @@ function calcAvg(user, scores) {
             total += scores[i].score
         }
     }
-    return total / games
+    let avg = total / games
+    return Math.round(avg * 10) / 10
 }
 
 function getRank(user, scores) {
