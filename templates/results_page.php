@@ -21,7 +21,6 @@
     <div class="wrapper">
         <div id="results">
             <?php
-                var_dump($GLOBALS);
                 if ($didSubmit) {
                     echo '<h4>It did submit: ' .$_POST['user'] .', ' .$_POST['score'] .'</h4>';
                 } else {

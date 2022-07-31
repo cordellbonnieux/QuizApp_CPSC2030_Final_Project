@@ -83,7 +83,7 @@ function handle_login() {
   return NULL;
 }
 
-// submit score
+// submit score at the end of a game
 function submit_score() {
   global $pdo;
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -97,4 +97,16 @@ function submit_score() {
     }
   }
   return FALSE;
+}
+
+// get all scores
+// this one is busted
+function get_scores() {
+  global $pdo;
+  $arr = array();
+  foreach($pdo->query('SELECT * FROM scores') as $score) {
+    $item = array('score'=>$score['score'], 'user'=>$score['user']);
+    array_push($arr, $item);
+  }
+  return $arr;
 }
