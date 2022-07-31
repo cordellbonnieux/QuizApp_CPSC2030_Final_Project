@@ -11,11 +11,11 @@
     <link rel="icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/stats.js" defer></script>
     <script src="js/results.js" defer></script>
     <script type="text/javascript">
         const scores = JSON.parse('<?php echo json_encode($scores); ?>')
         const currentScore = '<?php echo $currentScore; ?>'
-        //const username = '<?php echo $currentScore; ?>'
     </script>
 </head>
 <body>
