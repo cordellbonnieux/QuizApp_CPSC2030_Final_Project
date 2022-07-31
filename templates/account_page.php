@@ -11,12 +11,14 @@
     <link rel="icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/stats.js" defer></script>
     <script src="js/account.js" defer></script>
     <script type="text/javascript">
         //add if user is logged in before you set these
         localStorage.setItem('name', "<?php echo $user['name'] ?>")
         localStorage.setItem('email', "<?php echo $user['email'] ?>")
         localStorage.setItem('password', "<?php echo $user['password'] ?>")
+        const scores = JSON.parse('<?php echo json_encode($scores); ?>')
     </script>
 </head>
 <body>
@@ -25,11 +27,6 @@
         <div id="account">
         <span class="loading">page is loading...</span>
         <!-- account and link to play quiz.php injected via JS --->
-        inject some js here foo
-        <!--- maybe move this to js later--->
-        <form action="quiz.php" method="POST">
-            <button type="submit" name="valid">play game</button>
-        </form>
         </div>
     </div>
 </body>

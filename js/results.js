@@ -31,3 +31,9 @@ play.value = 'play again?'
 play.name = 'valid'
 form.appendChild(play)
 statsContainer.appendChild(form)
+
+// back to dashboard
+let dash = document.createElement('button')
+dash.textContent = 'return to dashboard'
+dash.addEventListener('click', () => window.location.href = 'index.php')
+statsContainer.appendChild(dash)

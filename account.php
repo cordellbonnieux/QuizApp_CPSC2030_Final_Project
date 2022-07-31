@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // this is a registration
         if (validate_email_user($_POST['emailRegister'], $_POST['userRegister'])) {
             $user = handle_register();
+            $scores = get_scores();
             include 'templates/account_page.php';
         } else {
             $user = NULL;
@@ -22,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $user = handle_login();
         if($user) {
             // logged in
+            $scores = get_scores();
             include 'templates/account_page.php';
         } else {
             // password or user name did not match
