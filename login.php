@@ -16,6 +16,7 @@
 <body>
     <h1>Quiz App</h1>
     <div class="wrapper">
+        <button id="toggle">register a new account</button>
         <div id="login">
             <h2>Login</h1>
             <form action="account.php" method="POST" id="loginForm">
