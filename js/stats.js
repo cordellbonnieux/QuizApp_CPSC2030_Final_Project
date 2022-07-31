@@ -1,8 +1,12 @@
-function scoreUI(score, total, description) {
+function scoreUI(score, description, total=null) {
     let wrap = document.createElement('div')
     wrap.className = 'scoreWrap'
     let p = document.createElement('p')
-    p.textContent = `${score}/${total}`
+    if (total != null) {
+        p.textContent = `${score}/${total}`
+    } else {
+        p.textContent = score
+    }
     p.className = 'scoreText'
     wrap.appendChild(p)
     let p2 = document.createElement('p')
@@ -36,10 +40,10 @@ function getRank(user, scores) {
                 games: 1
             })
         } else {
-            for (let y = 0; i < scoreList.length; y++) {
-                if (scoreList[i].user == scores[i].user) {
-                    scoreList[i].score += scores[i].score
-                    scoreList[i].games++
+            for (let y = 0; y < scoreList.length; y++) {
+                if (scoreList[y].user == scores[i].user) {
+                    scoreList[y].score += scores[i].score
+                    scoreList[y].games++
                 }
             }
         }
@@ -53,6 +57,7 @@ function getRank(user, scores) {
     }
     return {
         rank: rank,
-        users: userList.length
+        outOf: userList.length,
+        totalGames: scoreList[rank-1].games
     }
 }
