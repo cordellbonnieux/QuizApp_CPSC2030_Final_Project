@@ -1,12 +1,9 @@
 <?php
     require 'database/database.php';
+
     $pdo = db_connect();
-    $didSubmit = submit_score();
-    // get all scores
+    $currentScore = submit_score();
     $scores = get_scores();
-    foreach($scores as $score) {
-        echo 'user: ' .$score['user'] .', score: ' .$score['score'];
-    }
     // get your avg score
     // get your overall ranking
     // get your total number of games

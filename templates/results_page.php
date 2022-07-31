@@ -13,20 +13,17 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/results.js" defer></script>
     <script type="text/javascript">
-        // maybe pass to local storage?
+        const scores = JSON.parse('<?php echo json_encode($scores); ?>')
+        const currentScore = '<?php echo $currentScore; ?>'
+        //const username = '<?php echo $currentScore; ?>'
     </script>
 </head>
 <body>
     <h1>Quiz App</h1>
     <div class="wrapper">
         <div id="results">
-            <?php
-                if ($didSubmit) {
-                    echo '<h4>It did submit: ' .$_POST['user'] .', ' .$_POST['score'] .'</h4>';
-                } else {
-                    echo '<h4>it did not submit</h4>';
-                }
-            ?>
+        <span class="loading">page is loading...</span>
+            <!-- Results injected via JS --->      
         </div>
     </div>
 </body>

@@ -26,7 +26,7 @@
     <h1>Quiz App</h1>
     <div class="wrapper">
         <div id="quiz">
-            page is loading...
+        <span class="loading">page is loading...</span>
             <!-- Quiz Area injected via JS --->
         </div>
     </div>

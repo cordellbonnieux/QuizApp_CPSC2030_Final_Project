@@ -93,14 +93,13 @@ function submit_score() {
       $statement->bindValue(':score', $_POST['score']);
       $statement->bindValue(':user', $_POST['user']);
       $statement->execute();
-      return TRUE;
+      return $_POST['score'];
     }
   }
   return FALSE;
 }
 
 // get all scores
-// this one is busted
 function get_scores() {
   global $pdo;
   $arr = array();
