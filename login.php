@@ -18,7 +18,7 @@
     <div class="wrapper">
         <div id="login">
             <h2>Login</h1>
-            <form action="account.php" method="POST">
+            <form action="account.php" method="POST" id="loginForm">
                 <label for="userLogin">
                     username or email:
                     <input type="text" id="userLogin" name="userLogin"></input>
@@ -32,7 +32,7 @@
         </div>
         <div id="register">
             <h2>Create an account</h2>
-            <form action="account.php" method="POST">
+            <form action="account.php" method="POST" id="registerForm">
                 <label for="userRegister">
                     username:
                     <input type="text" id="userRegister" name="userRegister"></input>
