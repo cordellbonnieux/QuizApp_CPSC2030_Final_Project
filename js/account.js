@@ -32,24 +32,12 @@ deleteAcc.action = "delete.php"
 let del = document.createElement('input')
 del.type = 'submit'
 del.value = 'delete account'
-del.addEventListener('click', () => {
-    let u = document.createElement('input')
-    u.value = username
-    u.type = hidden
-    u.name = 'name'
-    deleteAcc.appendChild(u)
-    let p = document.createElement('input')
-    p.value = password
-    p.type = hidden
-    p.name = 'password'
-    deleteAcc.appendChild(p)
-    let e = document.createElement('input')
-    e.value = email
-    e.type = hidden
-    e.name = 'email'
-    deleteAcc.appendChild(e)
-})
+del.name = 'delete'
 deleteAcc.appendChild(del)
+// add hidden fields
+deleteAcc.appendChild(hiddenField(username,'name'))
+deleteAcc.appendChild(hiddenField(pass,'password'))
+deleteAcc.appendChild(hiddenField(email,'email'))
 accOptions.appendChild(deleteAcc)
 
 // secondary stats
@@ -75,3 +63,11 @@ play.value = 'play now'
 play.name = 'valid'
 form.appendChild(play)
 container.appendChild(form)
+
+function hiddenField(val, name) {
+    let f = document.createElement('input')
+    f.type = 'hidden'
+    f.name = name 
+    f.value = val
+    return f
+}

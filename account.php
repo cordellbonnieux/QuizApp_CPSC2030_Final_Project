@@ -3,7 +3,7 @@
 require 'database/database.php';
 $pdo = db_connect();
 $user;
-
+//$loadPage = FALSE;
 // coming from index login or register
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['submitRegister'])) {
@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if (validate_email_user($_POST['emailRegister'], $_POST['userRegister'])) {
             $user = handle_register();
             $scores = get_scores();
+            $loadPage = TRUE;
             include 'templates/account_page.php';
         } else {
             $user = NULL;
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if($user) {
             // logged in
             $scores = get_scores();
+            $loadPage = TRUE;
             include 'templates/account_page.php';
         } else {
             // password or user name did not match
