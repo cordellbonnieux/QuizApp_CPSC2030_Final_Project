@@ -1,8 +1,3 @@
-<?php
-//$_POST['name']
-//isset($_POST['password'] $_POST['email']
-//require 'database/database.php';
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,7 +11,6 @@
     <link rel="icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/delete.js" defer></script>
 </head>
 <body>
     <h1>Quiz App</h1>

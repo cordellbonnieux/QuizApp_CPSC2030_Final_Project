@@ -21,6 +21,7 @@ let logOut = document.createElement('button')
 logOut.innerHTML = 'log out'
 logOut.addEventListener('click', () => {
     localStorage.clear()
+    localStorage.setItem('banner', `Logged out of account "${username}".`)
     window.location.href = 'index.php'
 })
 accOptions.appendChild(logOut)

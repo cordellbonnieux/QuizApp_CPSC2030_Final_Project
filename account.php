@@ -2,6 +2,7 @@
 <?php
 require 'database/database.php';
 $pdo = db_connect();
+$banner = '';
 $user;
 //$loadPage = FALSE;
 // coming from index login or register
@@ -15,8 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             include 'templates/account_page.php';
         } else {
             $user = NULL;
-            // this message may not work now
-            echo '<span class="alert">email or username already exists, please try another.</span>';
+            $banner = 'Email or username already exists, please try another.';
             include 'redirect.php';
         }
     } else if (isset($_POST['submitLogin'])) {
@@ -29,8 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             include 'templates/account_page.php';
         } else {
             // password or user name did not match
-            // this message may not work now
-            echo '<span class="alert">username/email or password did not match, please try again.</span>';
+            $banner = 'Username/email or password did not match, please try again.';
             include 'redirect.php';
         }
     }

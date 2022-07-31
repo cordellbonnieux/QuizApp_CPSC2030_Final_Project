@@ -1,5 +1,8 @@
 // if local storage exists make a post request to account.php to login
 if (localStorage.getItem('name') && localStorage.getItem('password')) {
+    if (localStorage.getItem('banner')) {
+        localStorage.removeItem('banner')
+    }
     const form = document.createElement('form')
     form.method = 'POST'
     form.action = 'account.php'
