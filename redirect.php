@@ -12,7 +12,7 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript">
-        window.location.href = 'login.php'
+        window.location.href = 'index.php'
     </script>
 </head>
 <body>

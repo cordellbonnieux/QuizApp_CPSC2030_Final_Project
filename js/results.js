@@ -27,9 +27,7 @@ form.action = 'quiz.php'
 form.method = 'POST'
 let play = document.createElement('input')
 play.type = 'submit'
-play.innerHTML = 'play again?'
+play.value = 'play again?'
 play.name = 'valid'
 form.appendChild(play)
 statsContainer.appendChild(form)
-
-
