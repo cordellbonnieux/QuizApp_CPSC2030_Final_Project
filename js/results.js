@@ -23,7 +23,7 @@ container.appendChild(statsContainer)
 
 // create play again button
 let play = document.createElement('a')
-play.href = 'index.php'
+play.href = 'quiz.php'
 play.textContent = 'play again?'
 statsContainer.appendChild(play)
 

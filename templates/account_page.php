@@ -11,22 +11,20 @@
     <link rel="icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/quiz.js" defer></script>
+    <script src="js/account.js" defer></script>
     <script type="text/javascript">
-        // pass user to local storage
-        //localStorage.setItem('name', "<?php echo $user['name'] ?>")
-        //localStorage.setItem('email', "<?php echo $user['email'] ?>")
-        // pass unsplash api data to local storage
-        localStorage.setItem('apiSecret', "<?php echo getUnsplashData()['secret'] ?>")
-        localStorage.setItem('apiAccess', "<?php echo getUnsplashData()['access'] ?>")
+        //add if user is logged in before you set these
+        localStorage.setItem('name', "<?php echo $user['name'] ?>")
+        localStorage.setItem('email', "<?php echo $user['email'] ?>")
+        localStorage.setItem('password', "<?php echo $user['password'] ?>")
     </script>
 </head>
 <body>
     <h1>Quiz App</h1>
     <div class="wrapper">
-        <div id="quiz">
+        <div id="account">
         <span class="loading">page is loading...</span>
-            <!-- Quiz Area injected via JS --->
+            <!-- account and link to play quiz.php injected via JS --->
         </div>
     </div>
 </body>

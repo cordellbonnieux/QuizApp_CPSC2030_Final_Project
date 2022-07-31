@@ -37,7 +37,7 @@ function handle_register() {
       $statement->bindValue(':password', $_POST['passwordRegister']);
       $statement->execute();
 
-      return array("name"=>$_POST['userRegister'], "email"=>$_POST['emailRegister']);
+      return array("name"=>$_POST['userRegister'], "email"=>$_POST['emailRegister'], "password"=>$_POST['passwordRegister']);
     }
   }
 }
@@ -73,7 +73,7 @@ function handle_login() {
           //$query = 'SELECT ' .$col  ', password FROM users;';
           foreach ($pdo->query($query) as $field) {
             if ($field[$col] == $_POST['userLogin'] && $field['password'] == $_POST['passwordLogin']) {
-              return array("name"=>$field['name'], "email"=>$field['email']);
+              return array("name"=>$field['name'], "email"=>$field['email'], "password"=>$field['password']);
             }
           }
         }
