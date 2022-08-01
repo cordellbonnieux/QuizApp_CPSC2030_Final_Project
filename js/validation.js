@@ -106,7 +106,7 @@ for (let i = 0; i < 2; i++) {
                 t.id = `inputs${i*2}`
                 t.className = 'invalidTag'
                 t.textContent = 'username is too short'
-                t.style = `background: red; color: #fff;`
+                //t.style = `background: red; color: #fff;`
                 insertAfter(usr[i], t)
             }
             valid[`${i*2}`] = false
@@ -128,7 +128,7 @@ inputs[1].addEventListener('blur', () => {
             t.id = 'inputs1'
             t.className = 'invalidTag'
             t.textContent = 'password too short (6 chars min)'
-            t.style = `background: red; color: #fff;`
+            //t.style = `background: red; color: #fff;`
             insertAfter(inputs[1], t)
         }
         valid[1] = false
@@ -149,7 +149,7 @@ inputs[3].addEventListener('blur', () => {
             t.id = 'inputs3'
             t.className = 'invalidTag'
             t.textContent = 'invalid email'
-            t.style = `background: red; color: #fff;`
+            //t.style = `background: red; color: #fff;`
             insertAfter(inputs[3], t)
         }
         valid[3] = false
@@ -170,7 +170,7 @@ inputs[5].addEventListener('blur', () => {
             t.id = 'inputs4'
             t.className = 'invalidTag'
             t.textContent = inputs[4].value.trim().length < 6 ? 'password too short (6 chars min)' : 'passwords must match'
-            t.style = `background: red; color: #fff;`
+            //t.style = `background: red; color: #fff;`
             insertAfter(inputs[4], t)
         }
         valid[4] = true
