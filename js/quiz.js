@@ -125,7 +125,6 @@ function renderUI(question) {
         img.src = question.img
     } else {
         img = make('div', 'quizImgPlaceholder')
-        img.innerHTML = 'placeholder image'
     }
     wrap.appendChild(img)
     // add the question
