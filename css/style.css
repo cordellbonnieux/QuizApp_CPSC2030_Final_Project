@@ -5,6 +5,34 @@ body {
     background-color: #DAC4F7;
     color: #262322;
     font-family: 'Kanit', sans-serif;
+    background-image: url('../img/bg.png');
+    background-repeat: repeat;
+    animation: shiftBG;
+    animation-iteration-count: infinite;
+    animation-duration: 60s;
+    animation-timing-function: ease-in-out;
+    background-position: 100% 100%;
+}
+
+@keyframes shiftBG {
+    0% {
+        background-color: #262322;
+        background-position: -10% -10%;
+    }
+    25% {
+        background-color: #DAC4F7;
+    }
+    50% {
+        background-color: #DA3E52;
+        background-position: 100% 200%;
+    }
+    75% {
+        background-color: #F6E27F;
+    }
+    100% {
+        background-color: #F6E27F;
+        background-position: 200% 300%;
+    }
 }
 
 h1 {
