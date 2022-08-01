@@ -102,6 +102,16 @@ button:hover, input[type='submit']:hover {
     border-radius: 10px;
 }
 
+#toggle {
+    border: none;
+    text-decoration: underline;
+}
+
+#toggle:hover {
+    text-decoration: none;
+    filter: none;
+}
+
 .loginContainer > div > form {
     text-align: right;
 }
@@ -122,13 +132,20 @@ button:hover, input[type='submit']:hover {
     margin-top: 10px;
 }
 
-input[type='text'], input[type='email'], input[type='password'] {
-    border: 2px solid #262322;
+.loginContainer > div > form > button.disabled:hover {
+    filter: none;
+    text-decoration: none;
 }
 
 .disabled {
     opacity: 50%;
 }
+
+input[type='text'], input[type='email'], input[type='password'] {
+    border: 2px solid #262322;
+}
+
+
 
 .invalidTag {
     padding: 0 5px;
