@@ -123,3 +123,30 @@ button:hover, input[type='submit']:hover {
 .accOptions > * {
     margin: 0 8px 0 0;
 }
+
+.statsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 25px 0;
+}
+
+.statsContainer .scoreWrap {
+    text-align: center;
+    margin: 8px;
+    background-color: #262322;
+    padding: 10px;
+    color: #fff;
+    border-right: 15px solid #262322;
+    border-left: 15px solid #262322;
+}
+
+.statsContainer .scoreWrap .scoreText {
+    font-size: 2em;
+    margin: 0;
+}
+
+.statsContainer .scoreWrap .scoreDescription {
+    margin: 0;
+    font-size: 12px;
+    color: #ACECF7;
+}
