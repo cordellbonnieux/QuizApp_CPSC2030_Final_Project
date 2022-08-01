@@ -193,7 +193,7 @@ toggle.addEventListener('click', () => {
         wrapper.removeChild(containers[1])
         wrapper.appendChild(containers[0])
     } else {
-        toggle.textContent = 'login to your account'
+        toggle.textContent = 'login to an existing account'
         toggled = true
         wrapper.removeChild(containers[0])
         wrapper.appendChild(containers[1])
