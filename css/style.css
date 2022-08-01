@@ -93,11 +93,6 @@ button:hover, input[type='submit']:hover {
     }
 }
 
-.invalid {
-    /* is this in use? */
-    border: 1px dotted red;
-}
-
 .wrapper {
     display: block;
     margin: 25px auto;
@@ -127,9 +122,17 @@ button:hover, input[type='submit']:hover {
     margin-top: 10px;
 }
 
+input[type='text'], input[type='email'], input[type='password'] {
+    border: 2px solid #262322;
+}
+
+.disabled {
+    opacity: 50%;
+}
+
 .invalidTag {
     padding: 0 5px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     grid-column-start: 1;
     grid-column-end: 3;

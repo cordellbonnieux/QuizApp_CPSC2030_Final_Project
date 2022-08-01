@@ -47,7 +47,7 @@
                 </label>
                 <label for="emailRegister">
                     email:
-                    <input type="text" id="emailRegister" name="emailRegister"></input>
+                    <input type="email" id="emailRegister" name="emailRegister"></input>
                 </label>
                 <label for="passwordRegister">
                     password:

@@ -214,6 +214,8 @@ localStorage.removeItem('currentForm')
 // ensure buttons are disabled on page load
 submits[0].disabled = true 
 submits[1].disabled = true
+submits[0].className = 'disabled' 
+submits[1].className = 'disabled'
 
 function isEmail(email) {
     return email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
@@ -227,12 +229,16 @@ function insertAfter(referenceNode, newNode) {
 function checkValidity() {
     if (valid[0] && valid[1]) {
         submits[0].disabled = false
+        submits[0].className = ''
     } else {
         submits[0].disabled = true
+        submits[0].className = 'disabled'
     }
     if (valid[2] && valid[3] && valid[4] && valid[5]) {
         submits[1].disabled = false
+        submits[1].className = ''
     } else {
         submits[1].disabled = true
+        submits[1].className = 'disabled'
     }
 }
