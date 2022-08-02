@@ -35,6 +35,15 @@ body {
     }
 }
 
+a {
+    color: #DA3E52;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 h1 {
     font-family: 'Modak', cursive;
     font-size: 3em;
@@ -144,8 +153,6 @@ button:hover, input[type='submit']:hover {
 input[type='text'], input[type='email'], input[type='password'] {
     border: 2px solid #262322;
 }
-
-
 
 .invalidTag {
     padding: 0 5px;
@@ -270,7 +277,7 @@ input[type='text'], input[type='email'], input[type='password'] {
 }
 
 @media only screen 
-and (max-device-width : 400px) {
+and (max-width : 400px) {
   .statsContainer .scoreWrap {
     margin: 3px;
     border: 0;

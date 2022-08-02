@@ -7,9 +7,6 @@
     <title>Quiz App</title>
     <meta name="description" content="Quiz App">
     <meta name="author" content="Cordell Bonnieux">
-
-    <link rel="icon" href="/favicon.ico">
-
     <link rel="stylesheet" href="css/style.css">
     <script src="js/stats.js" defer></script>
     <script src="js/results.js" defer></script>

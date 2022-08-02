@@ -3,13 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Quiz App</title>
     <meta name="description" content="Quiz App">
     <meta name="author" content="Cordell Bonnieux">
-
-    <link rel="icon" href="/favicon.ico">
-
     <link rel="stylesheet" href="css/style.css">
     <script src="js/validation.js" defer></script>
 </head>
@@ -21,6 +17,8 @@
             Quiz App is a simple game, which pulls in random questions from the web to test your know-how in rounds of 10.
             Register an account to track your score and see how you compare with others.
         </p>
+        <a href="documentation.html" target="_blank">Documentation</a>
+        <a href="sources.html" target="_blank">Sources</a>
     </div>
     <div class="wrapper loginContainer">
         <button id="toggle">register a new account</button>

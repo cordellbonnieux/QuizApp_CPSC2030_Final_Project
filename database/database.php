@@ -3,7 +3,6 @@ require 'config.php';
 
 // return a PDO
 function db_connect() {
-
   try {
     $connect = 'mysql:host=' .DBHOST .';dbname=' .DBNAME;
     $user = DBUSER;

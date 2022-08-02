@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz App Documentation</title>
+  <meta name="description" content="Quiz App Documentation">
+  <meta name="author" content="Cordell Bonnieux">
+</head>
+<body>
+    <main>
+        <h1>Quiz App Documentation</h1>
+        <h2>CPSC 2030 Final Project</h2>
+        <h3>Created by Cordell Bonnieux #100372192</h3>
+        <div>
+            <h4>Use</h4>
+            <p>
+                Create an account by clicking 'register a new account', on the login page (landing page, when logged out). 
+                After account creation you will be redirected to your dashboard, from there you can 1.play the game, 2. log out, 3. delete your account.
+                If you click on 'play now', you will start the quiz game. A random question (and associated image, if any) will appear on the screen along with 4 buttons.
+                The 4 buttons represent answers, click on the one you think is right (3 are wrong). After 10 questions, the app will tally your score (submit to db) and 
+                display it to you. You will also see other stats on this screen, like your avg score and your position on the leaderboard (calculated from all user accounts).
+                You can then choose to either play again or return to your dashboard.
+
+                From your dashboard, as mentioned above, you can log out and delete your account. The deletion is a two-step process, to ensure no accidents happen when trying to log out.
+            </p>
+        </div>
+        <div>
+            <h4>Important Features</h4>
+            <p>
+                Aside from meeting all the requirments set in the instructions document, here are some extra, or cool features I'd like to point out.
+            </p>
+            <uL>
+                <li>
+                    <b>Cascading Background:</b> Using CSS keyframes and GIMP2 open-source image editor, I created a cascading background effect using a single png and background color.
+                    The image I created tiles, so it is called recursively during the animation to give the effect of depth, this is amplified by the shifting background colors.
+                    I believe that using such a small image and CSS keyframes in lieu of performance intensive HTML5 Canvas with JS, is something to mention as it is both good graphic and application design.
+                </li>
+                <li>
+                    <b>Client Side Validation and Notifications:</b> Each field on the login and register forms uses client side validation driven by user events. When a field has an invalid entry
+                    and the user focuses away from it, a text notification will appear beneth that field, in addition the form witll become unsubmitable (which is visibily easy to tell). 
+                </li>
+                <li>
+                    <b>Server Side Validation and Notifications:</b> Upon important actions, like logging out, deleting an account or submitting an invalid password, the user will be redirected back to
+                    the page of origin (login page), and a red banner displaying what went wrong will be fixed to the top of the screen for 6 seconds, before fading away.
+                </li>
+                <li>
+                    <b>Chained Fetch Requests from External REST APIs:</b> In order to create this quiz, I needed questions and images, for which I used external REST APIs for both. The entire
+                    quiz part of the Quiz App, is created using asynchronous JavaScript. First, the quiz API is called, when 10 questions are recived the game then calls another API to retrive images
+                    based on the description meta tags contained in the quiz question API object, which was returned. At the end, the quiz game dynamically constructs a quiz question 'page', containing
+                    the image, question and answers. When the user answers, the result is recorded (to be compared upon match completetion). Then the next question is loaded on the page (asynchronously, no reload)
+                    until the user reaches question #10. After which, they are taken to the results page, where they can see their stats and rankings (based on all users in DB table).
+                </li>
+                <li>
+                    <b>Stats and Rankings:</b> As mentioned briefly above, each match is recorded in a separate table in the DB (separate from the users). Each time the user hits their dashboard,
+                    or the results page after a game, the scores from the database are called, and several different 'stats' are calculated and displayed to the user. These stats include: 
+                    user's average score, rank among other users, number of games played; additionally for the results page, the stats of the match just played are also displayed. Although, I
+                    only implimented 4 stat calculations, I believe that this concept would be easily expanded upon (you'll notice stats.js), as it would only be a matter of writing another 
+                    stat generation function, and using my already made scoreUI function (to display it).
+                </li>
+                <li>
+                    <b>Game Loop & Application Design</b> I believe that my design for this application is worth noting. Particularily the flow of the app is very smooth and clear. There is no
+                    entering page urls into the browser, they will always redirect you to where you should be. There are very few features, but they are all built well, and thoroughly tested; in addition
+                    they are all easy to expand on (i.e. more stats easily added, using specific api calls for creating quiz categories...etc), and if I had more time I would explore some of these options.
+                    Within the flow of the app, is also the game loop, or flow of the quiz itself, which really is a little application within a larger web app, who's really just serving the quiz and validating the users.
+                    The quiz app dynamically creates and loads content, with no page reloads, recursively until the final score is submitted to the database. 
+                    As you can see, the quiz itself is contained in a client-side loading js file, which was very intentional. Apart of separating backend from front end logic, being able to play 
+                    an entire round, with no page refreshes, and submitting the results at the end, is very performance-friendly on the server.
+
+                </li>
+            </uL>
+        </div>
+        <div>
+            <h4>Database Structure</h4>
+            <h5>Database: project2030</h4>
+            <h6>table: users</h5>
+            <ul>
+                <li>userID: int (key)</li>
+                <li>name: varchar 255</li>
+                <li>email: varchar 255</li>
+                <li>password: varchar 255</li>
+            </ul>
+            <h6>table: scores</h5>
+                <ul>
+                    <li>ID: int (key)</li>
+                    <li>score: int</li>
+                    <li>user: varchar 255</li>
+                </ul>
+        </div>
+        <div>
+            <h4>Validation Screen Shots</h4>
+            <ul>
+                <li>
+                    <img src="screenshots/accountJS.png" alt="account.js"/>
+                </li>
+                <li>
+                    <img src="screenshots/css.png" alt="style.css"/>
+                </li>
+                <li>
+                    <img src="screenshots/indexJS.png"  alt="index.js"/>
+                </li>
+                <li>
+                    <img src="screenshots/quizJS.png"  alt="quiz.js"/>
+                </li>
+                <li>
+                    <img src="screenshots/resultsJS.png"  alt="results.js"/>
+                </li>
+                <li>
+                    <img src="screenshots/statsJS.png"  alt="stats.js"/>
+                </li>
+                <li>
+                    <img src="screenshots/validationJS.png"  alt="validation.js"/>
+                </li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
