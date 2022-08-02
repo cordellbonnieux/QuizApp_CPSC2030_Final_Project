@@ -56,13 +56,22 @@ let fetchImages = () => {
                 })
                 .then(images => {
                     if (images.length > 0) {
-                        return images[0].urls.regular
+                        let r = Math.floor(Math.random() * images.length)
+                        return {
+                            url: images[r].urls.regular,
+                            alt: images[r].alt_description
+                        }
                     } else {
                         return null
                     }
                 })
                 .then(img => {
-                    questions[i].img = img
+                    if (img != null) {
+                        questions[i].img = img.url
+                        questions[i].imgAlt = img.alt
+                    } else {
+                        questions[i].img = null
+                    }
                     resolve('Resolved')
                 })
                 .catch(err => {
