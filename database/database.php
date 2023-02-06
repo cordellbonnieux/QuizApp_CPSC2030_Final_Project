@@ -1,5 +1,4 @@
 <?php
-require 'config.php';
 define('DBHOST', 'mysql://root:qD4EHOdL8J86kBTF92cZ@containers-us-west-161.railway.app:5613/railwayt');
 define('DBNAME', 'railway');
 define('DBUSER', 'root');
