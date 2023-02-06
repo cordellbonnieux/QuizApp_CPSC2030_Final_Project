@@ -1,6 +1,7 @@
 <?php
 define('DBHOST', 'mysql://root:qD4EHOdL8J86kBTF92cZ@containers-us-west-161.railway.app:5613/railwayt');
 define('DBNAME', 'railway');
+define('DBPORT', '5613');
 define('DBUSER', 'root');
 define('DBPASS', 'qD4EHOdL8J86kBTF92cZ');
 define('UNSPLASH_SECRET', 'NmsbcQxQA6yzPwzTBZfF8jF3Exfakj22EHVfJwvd1lc');
@@ -10,7 +11,7 @@ define('UNSPLASH_ACCESS', 'YKrSKDkWtiHZi2XLIPzQPFTExaO4dcwI86rGbCdijIM');
 // return a PDO
 function db_connect() {
   try {
-    $connect = 'mysql:host=' .DBHOST .';dbname=' .DBNAME;
+    $connect = 'mysql:host=' .DBHOST .';port=' .DBPORT .';dbname=' .DBNAME;
     $user = DBUSER;
     $password = DBPASS;
 
