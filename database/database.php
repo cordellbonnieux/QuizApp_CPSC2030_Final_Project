@@ -1,5 +1,5 @@
 <?php
-define('DBHOST', 'mysql://root:qD4EHOdL8J86kBTF92cZ@containers-us-west-161.railway.app:5613/railwayt');
+define('DBHOST', 'containers-us-west-161.railway.app');
 define('DBNAME', 'railway');
 define('DBPORT', '5613');
 define('DBUSER', 'root');
