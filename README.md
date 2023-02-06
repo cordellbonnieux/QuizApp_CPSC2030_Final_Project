@@ -3,3 +3,5 @@ A fullstack quiz application, where users can create accounts and complete quize
 This web application is my final project submission for CPSC2030 at Langara.
 
 Stack: JavaScript ES6, HTML, PHP, CSS, Perl, MariaDB
+
+https://quizapp.up.railway.app/
